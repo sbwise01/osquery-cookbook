@@ -11,6 +11,9 @@ action :install_ubuntu do
   package_version = "#{new_resource.version}#{PACKAGE_SUFFIX}"
   package_action = new_resource.upgrade ? :upgrade : :install
   os_codename = node['lsb']['codename']
+  if os_codename == 'bionic'
+    os_codename = 'xenial'
+  end
 
   apt_repository 'osquery' do
     action        :add

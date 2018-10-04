@@ -5,7 +5,8 @@ def whyrun_supported?
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::OsquerySyslog.new(new_resource.syslog_file)
+  # The following line is from:  https://github.com/jacknagz/osquery-cookbook/commit/6f97a1e51ea6d3af08497581722f7c0d740606e3
+  @current_resource = new_resource
   @current_resource.pipe_filter(new_resource.pipe_filter)
   @current_resource.pipe_path(new_resource.pipe_path)
 end

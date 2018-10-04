@@ -28,7 +28,7 @@ module OsqueryInstallerHelpers
   def supported
     {
       mac_os_x: %w(10.10),
-      ubuntu: %w(12.04 14.04 16.04),
+      ubuntu: %w(12.04 14.04 16.04 18.04),
       centos: %w(6.5 7.0),
       redhat: %w(6.5 7.0)
     }
