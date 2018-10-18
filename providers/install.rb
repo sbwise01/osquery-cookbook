@@ -38,7 +38,8 @@ action :install_centos do
   package_version = "#{new_resource.version}#{PACKAGE_SUFFIX}"
   package_action = new_resource.upgrade ? :upgrade : :install
   repo_url = "#{osquery_s3}/centos#{os_version}/noarch"
-  centos_repo = "osquery-s3-centos#{os_version}-repo-1-0.0.noarch.rpm"
+  centos_repo_name = "osquery-s3-centos#{os_version}-repo"
+  centos_repo = "#{centos_repo_name}-1-0.0.noarch.rpm"
 
   remote_file "#{file_cache}/#{centos_repo}" do
     action   :create
@@ -56,6 +57,7 @@ action :install_centos do
   package 'osquery' do
     action   package_action
     version  package_version
+    options  "--enablerepo=#{centos_repo_name}"
   end
 end
 
